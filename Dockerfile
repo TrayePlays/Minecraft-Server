@@ -20,4 +20,4 @@ RUN echo "eula=true" > eula.txt
 EXPOSE 19132/udp
 
 # Start the server
-CMD ["bash", "-c", "ls -l && ./bedrock_server"]
+CMD ["./bedrock_server"]
