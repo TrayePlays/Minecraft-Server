@@ -9,7 +9,7 @@ RUN apt-get update && \
     apt-get clean
 
 # Copy Bedrock server ZIP and Ngrok binary
-COPY bedrock-server-1.21.102.1.zip /bedrock.zip
+RUN curl -L -o bedrock.zip "https://github.com/TrayePlays/Minecraft-Server/releases/download/v1.0.0/bedrock-server-1.21.102.1.zip"
 COPY ngrok /ngrok
 COPY start.sh /start.sh
 
