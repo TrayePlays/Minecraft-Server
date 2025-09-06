@@ -8,9 +8,12 @@ RUN apt-get update && \
     apt-get clean
 
 # Download the Bedrock server directly from Mojang
-RUN curl -o bedrock_server.zip https://www.minecraft.net/bedrockdedicatedserver/bin-linux/bedrock-server-1.21.102.1.zip && \
-    unzip bedrock-server-1.21.102.1.zip && \
-    chmod +x bedrock-server-1.21.102.1
+RUN curl -o bedrock_server.zip https://minecraft.azureedge.net/bin-linux/bedrock-server-1.21.102.1.zip && \
+    apt-get install -y unzip && \
+    unzip bedrock_server.zip && \
+    mv bedrock-server-1.21.102.1 bedrock_server && \
+    chmod +x bedrock_server
+
 
 # Accept EULA
 RUN echo "eula=true" > eula.txt
