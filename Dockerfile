@@ -13,13 +13,13 @@ RUN curl -L -o bedrock.zip "https://github.com/TrayePlays/Minecraft-Server/relea
 # Unzip and make server executable
 RUN unzip bedrock.zip && chmod +x bedrock_server
 
-# Copy Ngrok and start script
-COPY ngrok /ngrok
-COPY start.sh /start.sh
-RUN chmod +x /ngrok /start.sh
+# Copy Ngrok binary and start script into container
+COPY ngrok /bedrock/ngrok
+COPY start.sh /bedrock/start.sh
+RUN chmod +x /bedrock/ngrok /bedrock/start.sh
 
-# Expose Bedrock port
+# Expose Bedrock port internally
 EXPOSE 19132/udp
 
 # Launch tunnel and server
-CMD ["/start.sh"]
+CMD ["/bedrock/start.sh"]
