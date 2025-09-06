@@ -8,7 +8,7 @@ RUN apt-get update && \
     apt-get clean
 
 # Download the Bedrock server directly from Mojang
-RUN curl -o bedrock_server.zip https://minecraft.azureedge.net/bin-linux/bedrock-server-1.21.102.1.zip && \
+RUN curl -o bedrock_server.zip https://www.minecraft.net/bedrockdedicatedserver/bin-linux/bedrock-server-1.21.102.1.zip && \
     unzip bedrock_server.zip && \
     chmod +x bedrock_server
 
