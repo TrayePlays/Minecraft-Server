@@ -2,23 +2,20 @@ FROM ubuntu:20.04
 
 WORKDIR /bedrock
 
-# Install required dependencies
+# Install dependencies
 RUN apt-get update && \
-    apt-get install -y libcurl4 libssl1.1 libnss3 libsqlite3-0 && \
+    apt-get install -y curl unzip libcurl4 libssl1.1 libnss3 libsqlite3-0 && \
     apt-get clean
 
-# Copy all server files into the container
-COPY . .
+# Download and extract Bedrock server
+RUN curl -o bedrock_server.zip https://minecraft.azureedge.net/bin-linux/bedrock-server-1.21.102.1.zip && \
+    unzip bedrock_server.zip && \
+    mv bedrock-server-1.21.102.1 bedrock_server && \
+    chmod +x bedrock_server
 
-# Ensure the server binary is executable
-RUN chmod +x bedrock_server
-
-# Accept the EULA
+# Accept EULA
 RUN echo "eula=true" > eula.txt
 
-# Expose the default Bedrock UDP port
 EXPOSE 19132/udp
 
-# Start the server
-CMD ["bash", "-c", "ls -lh bedrock_server && head bedrock_server"]
-
+CMD ["./bedrock_server"]
