@@ -12,7 +12,7 @@ RUN curl -L -o bedrock.zip "https://github.com/TrayePlays/Minecraft-Server/relea
     unzip bedrock.zip && \
     chmod +x bedrock_server
 
-# Expose Bedrock port
+# Expose Bedrock port (UDP, but Railway only supports TCP — we’ll tunnel it)
 EXPOSE 19132
 
 # Start the server
