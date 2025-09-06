@@ -15,6 +15,7 @@ RUN unzip bedrock.zip && chmod +x bedrock_server
 
 # Copy Ngrok binary and start script into container
 COPY ngrok /bedrock/ngrok
+RUN chmod +x /bedrock/ngrok
 COPY start.sh /bedrock/start.sh
 RUN chmod +x /bedrock/ngrok /bedrock/start.sh
 
