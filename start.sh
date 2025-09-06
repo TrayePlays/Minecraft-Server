@@ -1,17 +1,14 @@
 #!/bin/bash
 
-# Authenticate Ngrok
-/bedrock/ngrok authtoken "32LKjyztxpWmrpvdinxDjLSzRS3_7k7pZvLvVyjsKvqjYT3RM"
+# Start Playit tunnel in background
+/bedrock/playit > /bedrock/playit.log 2>&1 &
 
-# Start UDP tunnel and log both stdout and stderr
-/bedrock/ngrok udp 19132 > /bedrock/ngrok.log 2>&1 &
-
-# Wait for Ngrok to initialize
+# Wait for tunnel to initialize
 sleep 5
 
 # Show tunnel info
-echo "Ngrok raw output:"
-cat /bedrock/ngrok.log
+echo "Playit tunnel info:"
+cat /bedrock/playit.log
 
 # Start Bedrock server
 ./bedrock_server
