@@ -4,7 +4,7 @@ WORKDIR /bedrock
 
 # Install dependencies
 RUN apt-get update && \
-    apt-get install -y curl unzip libcurl4 libssl1.1 libnss3 libsqlite3-0 libstdc++6 libgcc1 libz1 libpng16-16 && \
+    apt-get install -y curl unzip libcurl4 libssl3 libnss3 libsqlite3-0 libstdc++6 libgcc-s1 zlib1g libpng16-16 && \
     apt-get clean
 
 # Download and unzip Bedrock server
@@ -12,8 +12,6 @@ RUN curl -L -o bedrock.zip "https://github.com/TrayePlays/Minecraft-Server/relea
     unzip bedrock.zip && \
     chmod +x bedrock_server
 
-# Expose Bedrock port (UDP, but Railway only supports TCP — we’ll tunnel it)
 EXPOSE 19132
 
-# Start the server
 CMD ["./bedrock_server"]
